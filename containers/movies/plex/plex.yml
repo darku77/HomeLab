@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host           #needs to run like this, otherwise if ran inside docker network
+    environment:                 #the client would not recognize the server, also it exposes lots of ports
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+      - VERSION=docker
+    volumes:
+      - /appdata/plex/config:/config
+      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/cloud_500gb:/movies
+      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/tv_shows/:/tv

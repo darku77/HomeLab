@@ -4,8 +4,8 @@ services:
     container_name: qbittorrent
     image: ghcr.io/linuxserver/qbittorrent
     environment:
-      - PUID=998
-      - PGID=100
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Bucharest
       - WEBUI_PORT=8080
     volumes:

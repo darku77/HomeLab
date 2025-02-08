@@ -2,6 +2,9 @@
 
 ## HomeLab Management
 
+### Ofelia
+* Ofelia - a job scheduler
+* https://github.com/mcuadros/ofelia
 
 ### Ouroboros
 * Keep docker images updated
@@ -92,6 +95,15 @@
 * https://www.bazarr.media/
 * https://github.com/morpheus65535/bazarr
 * https://hub.docker.com/r/linuxserver/bazarr
+
+### PLEX
+* Meet your TV concierge.
+* https://www.plex.tv/
+* https://hub.docker.com/r/linuxserver/plex
+
+### PLEX TRAKT SYNC
+* https://github.com/Taxel/PlexTraktSync
+
 
 ## Troubleshooting
 

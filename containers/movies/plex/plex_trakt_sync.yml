@@ -1,0 +1,42 @@
+# https://github.com/Taxel/PlexTraktSync?tab=readme-ov-file#plex-trakt-sync
+version: "3.9"
+services:
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: trakt_sync_scheduler
+    depends_on:
+      - plextraktsync
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      ofelia.job-run.plextraktsync.schedule: "@every 10m"
+      ofelia.job-run.plextraktsync.container: "plextraktsync"
+  plextraktsync:
+    image: ghcr.io/taxel/plextraktsync
+    command: sync
+    container_name: plextraktsync
+    restart: on-failure:2
+    volumes:
+      - /appdata/plex_trakt_sync/:/app/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+
+networks:
+  default:
+    external: true
+    name: nginx_network
+
+# How to run here: https://github.com/Taxel/PlexTraktSync
+# This cannot be run from portainer only, it's a one time job not a daemon
+# sudo docker compose -f trakt.yml run --rm plextraktsync sync
+
+# 1 - Take this yml without ofelia, and dump it in a yml called 'trakt.yml'
+# 2 - SSH to machine where docker is running
+# 3 - Run 'sudo docker compose -f trakt.yml run --rm plextraktsync sync'
+#     - Here you will log in at command line like with plex, then trakt, then select plex servers to sync
+#     - It will create as well the configs under /appdata/plex_trakt_sync/
+# 4 - From portainer now create a stack with this whole yml (ofelia now included)
+# 5 - Done!!!
