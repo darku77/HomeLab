@@ -123,3 +123,12 @@
    * `$USER`: This is a shell variable that expands to the username of the currently logged-in user. The command is replacing `$USER` with the actual username of the user account you want to modify.
    * To list all available groups: `sudo getent group`
    * To list groups associated to the current user: `groups $USER`
+
+## RPI
+### Identify model
+   * ssh into rpi
+   * `cat /proc/cpuinfo`
+   * Search for `Revision` and `Model` 
+   * Go to https://elinux.org/RPi_HardwareHistory
+   * Search for `revision` there
+
