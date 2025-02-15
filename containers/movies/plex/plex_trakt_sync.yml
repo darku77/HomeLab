@@ -1,5 +1,4 @@
 # https://github.com/Taxel/PlexTraktSync?tab=readme-ov-file#plex-trakt-sync
-version: "3.9"
 services:
   ofelia:
     image: mcuadros/ofelia:latest

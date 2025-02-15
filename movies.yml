@@ -1,0 +1,73 @@
+services:
+  bazarr:
+    container_name: bazarr
+    image: lscr.io/linuxserver/bazarr:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+    volumes:
+      - /appdata/bazarr/config:/config
+      # sudo chmod -R 0777 .   -> to add rights to the folder
+      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/cloud_500gb:/movies
+    ports:
+      - "6767:6767"
+    restart: unless-stopped
+
+  radarr:
+    container_name: radarr
+    image: lscr.io/linuxserver/radarr:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+
+      - TZ=Europe/Bucharest
+    volumes:
+      - /appdata/radarr/data:/config
+      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/cloud_500gb:/movies #optional
+    ports:
+      - "7878:7878"
+    restart: unless-stopped
+
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host #needs to run like this, otherwise if ran inside docker network
+    environment: #the client would not recognize the server, also it exposes lots of ports
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+      - VERSION=docker
+    volumes:
+      - /appdata/plex/config:/config
+      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/cloud_500gb:/movies
+      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/tv_shows/:/tv
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: trakt_sync_scheduler
+    depends_on:
+      - plextraktsync
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      ofelia.job-run.plextraktsync.schedule: "@every 10m"
+      ofelia.job-run.plextraktsync.container: "plextraktsync"
+
+  plextraktsync:
+    image: ghcr.io/taxel/plextraktsync
+    command: sync
+    container_name: plextraktsync
+    restart: on-failure:2
+    volumes:
+      - /appdata/plex_trakt_sync/:/app/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+
+networks:
+  default:
+    external: true
+    name: nginx_network
