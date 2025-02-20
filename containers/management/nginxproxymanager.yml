@@ -5,7 +5,6 @@
 #  Email:    admin@example.com
 #  Password: changeme
 
-version: '3.8'
 services:
   nginxproxymanager:
     container_name: nginxproxymanager

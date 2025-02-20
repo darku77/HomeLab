@@ -1,0 +1,20 @@
+version: '3.9'
+
+# Before
+# sudo mkdir -p /appdata_backup
+# sudo nano /appdata_backup/backup.sh and paste the content of backup.sh
+# sudo chmod +x /appdata_backup/backup.sh
+
+services:
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    restart: always
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      ofelia.job-run.plextraktsync.schedule: "@every 10m"
+      ofelia.job-run.plextraktsync.container: "plextraktsync"
+      ofelia.job-local.backup.schedule: "@every 3m"
+      ofelia.job-local.backup.command: "/appdata_backup/backup.sh"

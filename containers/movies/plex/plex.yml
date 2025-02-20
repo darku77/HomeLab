@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
@@ -11,5 +10,5 @@ services:
       - VERSION=docker
     volumes:
       - /appdata/plex/config:/config
-      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/cloud_500gb:/movies
-      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/tv_shows/:/tv
+      - /srv/dev-disk-by-uuid-927de304-fe4e-430d-8c9d-97e019fe287f/movies:/movies
+      - /srv/dev-disk-by-uuid-927de304-fe4e-430d-8c9d-97e019fe287f/tv_shows/:/tv

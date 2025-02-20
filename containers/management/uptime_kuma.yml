@@ -1,4 +1,3 @@
-version: "3.8"
 # https://github.com/louislam/uptime-kuma
 # https://uptime.kuma.pet/
 services:

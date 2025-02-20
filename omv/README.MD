@@ -41,3 +41,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
   -v portainer_data:/data \
   portainer/portainer-ce:linux-arm
 ```
+## Create appdata folder
+```shell
+  sudo mkdir -p /appdata
+  sudo chmod 777 /appdata
+  sudo mkdir -p /appdata_backup
+  sudo chmod 777 /appdata_backup
+```
+
+* Copy backup content

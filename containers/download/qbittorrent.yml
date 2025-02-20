@@ -9,8 +9,8 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - /appdata/qBittorrent:/config
-      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/cloud_500gb:/downloads
-      - /srv/dev-disk-by-uuid-1818fef1-b311-4d1d-8378-3745d8e7a331/tv_shows/:/series
+      - /srv/dev-disk-by-uuid-927de304-fe4e-430d-8c9d-97e019fe287f/movies:/downloads
+      - /srv/dev-disk-by-uuid-927de304-fe4e-430d-8c9d-97e019fe287f/tv_shows/:/series
     ports:
       - "6881:6881"
       - "6881:6881/udp"
