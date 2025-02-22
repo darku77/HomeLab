@@ -131,4 +131,8 @@
    * Search for `Revision` and `Model` 
    * Go to https://elinux.org/RPi_HardwareHistory
    * Search for `revision` there
+### Benchmark
+```
+   sudo curl https://raw.githubusercontent.com/TheRemote/PiBenchmarks/master/Storage.sh | sudo bash
+```
 
