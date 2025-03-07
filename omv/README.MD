@@ -25,8 +25,9 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 ```
 * From omv-extras menu, check `docker repo` checkbox | Save
-* Install from omv extras: [omv7_plugins:docker_compose](https://wiki.omv-extras.org/doku.php?id=omv7:omv7_plugins:docker_compose)
-* Install from omv extras: [omv7_plugins:scripts](https://wiki.omv-extras.org/doku.php?id=omv7:omv7_plugins:scripts)
+* Install from Plugins: [omv7_plugins:docker_compose](https://wiki.omv-extras.org/doku.php?id=omv7:omv7_plugins:docker_compose)
+* Install from Plugins: [omv7_plugins:scripts](https://wiki.omv-extras.org/doku.php?id=omv7:omv7_plugins:scripts)
+* Install from Plugins: openmediavault-sharerootfs -> with this you would be able to share the root folder as well
 
 ## Docker install & Portainer
 ```shell
